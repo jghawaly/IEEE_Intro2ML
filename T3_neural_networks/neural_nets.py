@@ -321,12 +321,6 @@ class NeuralNetwork:
                 value = layer.activate(value)
             else:
                 # dot product between previous layer activations and weight matrix between previous and current layer plus the bias vector of current layer
-                # value = layer.activate(np.dot(value, self.weights[index - 1]) + self.biases[index - 1])
-                # print("weights", self.weights[index - 1].shape, self.weights[index - 1])
-                # print("values", value.shape, value)
-                # print("biases", self.biases[index - 1].shape, self.biases[index - 1])
-
-                # value = (layer.activate(np.dot(self.weights[index - 1], value[np.newaxis].T) + self.biases[index - 1][np.newaxis].T)).T
                 net_input = self.weights[index - 1].T @ value.T + self.biases[index - 1].T
                 value = layer.activate(net_input).T
                 # print("output", value.shape, value)
@@ -335,7 +329,7 @@ class NeuralNetwork:
 
     def predict(self, inputs):
         """
-        Just a different name for the forward function
+        Performs a prediction on the given input data. Just an alias for the forward function
         :param inputs: input data vector
         :return: output vector
         """
